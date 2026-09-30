@@ -1,0 +1,517 @@
+/* UniPulse Custom Styles & Animations */
+
+:root {
+  --font-primary: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --color-brand-primary: #4F46E5;
+  --color-brand-accent: #6366F1;
+  --color-brand-glow: rgba(99, 102, 241, 0.12);
+  --color-bg-base: #F8F9FA;
+  --color-card-bg: #FFFFFF;
+  --color-border-subtle: #E2E8F0;
+}
+
+body {
+  font-family: var(--font-primary);
+  background-color: var(--color-bg-base);
+  color: #0F172A;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+/* ==========================================================================
+   Dark Theme Overrides
+   The app's markup uses static Tailwind (CDN/JIT) utility classes rather
+   than per-element `dark:` variants, so dark mode is applied here as a
+   global re-map of the same utility class names, scoped under the `.dark`
+   class the theme manager toggles on <html>. This keeps every existing
+   view/component working unchanged in both themes.
+   ========================================================================== */
+html.dark body {
+  background-color: #0B1120;
+  color: #E2E8F0;
+}
+
+/* Page shell backgrounds (arbitrary-value Tailwind classes) */
+html.dark .bg-\[\#F8F9FA\],
+html.dark .bg-\[\#F3F6F8\] {
+  background-color: #0B1120 !important;
+}
+
+/* Card / surface backgrounds */
+html.dark .bg-white { background-color: #161F32 !important; }
+html.dark .bg-slate-50 { background-color: #0F172A !important; }
+html.dark .bg-slate-100 { background-color: #1E293B !important; }
+html.dark .bg-slate-200 { background-color: #293549 !important; }
+html.dark .bg-slate-300 { background-color: #334155 !important; }
+html.dark .bg-slate-400 { background-color: #475569 !important; }
+
+/* Brand-tinted backgrounds (badges, chips, subtle highlights) */
+html.dark .bg-indigo-50 { background-color: rgba(99, 102, 241, 0.14) !important; }
+html.dark .bg-indigo-100 { background-color: rgba(99, 102, 241, 0.22) !important; }
+
+/* Hover backgrounds */
+@media (hover: hover) { html.dark .hover\:bg-slate-50:hover { background-color: #1C2739 !important; } }
+@media (hover: hover) { html.dark .hover\:bg-slate-50\/80:hover { background-color: rgba(28, 39, 57, 0.8) !important; } }
+@media (hover: hover) { html.dark .hover\:bg-slate-100:hover { background-color: #22304A !important; } }
+@media (hover: hover) { html.dark .hover\:bg-slate-200\/70:hover { background-color: rgba(41, 53, 73, 0.7) !important; } }
+@media (hover: hover) { html.dark .hover\:bg-slate-400:hover { background-color: #64748B !important; } }
+@media (hover: hover) { html.dark .hover\:bg-indigo-50:hover { background-color: rgba(99, 102, 241, 0.16) !important; } }
+@media (hover: hover) { html.dark .hover\:bg-indigo-50\/30:hover { background-color: rgba(99, 102, 241, 0.10) !important; } }
+@media (hover: hover) { html.dark .hover\:bg-indigo-100:hover { background-color: rgba(99, 102, 241, 0.24) !important; } }
+@media (hover: hover) { html.dark .hover\:bg-indigo-100\/50:hover { background-color: rgba(99, 102, 241, 0.18) !important; } }
+
+/* Primary text — near-black grays flip to light grays */
+html.dark .text-slate-700 { color: #CBD5E1 !important; }
+html.dark .text-slate-800 { color: #E2E8F0 !important; }
+html.dark .text-slate-900 { color: #F1F5F9 !important; }
+html.dark .text-slate-950 { color: #F8FAFC !important; }
+@media (hover: hover) { html.dark .hover\:text-slate-700:hover { color: #E2E8F0 !important; } }
+@media (hover: hover) { html.dark .hover\:text-slate-800:hover { color: #F1F5F9 !important; } }
+@media (hover: hover) { html.dark .hover\:text-slate-900:hover { color: #F8FAFC !important; } }
+
+/* Muted text stays legible without a full override, slightly lifted */
+html.dark .text-slate-400 { color: #94A3B8 !important; }
+html.dark .text-slate-500 { color: #9CA8BC !important; }
+html.dark .text-slate-600 { color: #AEB9CB !important; }
+
+/* Accent text — lighten indigo so it reads on dark backgrounds */
+html.dark .text-indigo-600,
+html.dark .text-indigo-700,
+html.dark .text-indigo-800,
+html.dark .text-indigo-900,
+html.dark .text-indigo-950 {
+  color: #A5B4FC !important;
+}
+@media (hover: hover) { html.dark .hover\:text-indigo-600:hover,
+html.dark .hover\:text-indigo-800:hover {
+  color: #C7D2FE !important;
+} }
+
+/* Borders & dividers */
+html.dark .border-slate-100 { border-color: rgba(255, 255, 255, 0.06) !important; }
+html.dark .border-slate-200,
+html.dark .border-slate-200\/80,
+html.dark .border-slate-300 {
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+html.dark .divide-slate-100 > * + * { border-color: rgba(255, 255, 255, 0.06) !important; }
+html.dark .border-indigo-100,
+html.dark .border-indigo-200,
+html.dark .border-indigo-300 {
+  border-color: rgba(129, 140, 248, 0.35) !important;
+}
+@media (hover: hover) { html.dark .hover\:border-indigo-300:hover,
+html.dark .hover\:border-indigo-400:hover {
+  border-color: rgba(129, 140, 248, 0.55) !important;
+} }
+html.dark .border-white { border-color: #161F32 !important; }
+html.dark .ring-white { --tw-ring-color: #0B1120 !important; }
+html.dark .ring-slate-200 { --tw-ring-color: rgba(255, 255, 255, 0.12) !important; }
+@media (hover: hover) { html.dark .hover\:ring-indigo-300:hover { --tw-ring-color: rgba(129, 140, 248, 0.5) !important; } }
+html.dark .text-slate-300 { color: #475569 !important; }
+
+/* Placeholders & form surfaces */
+html.dark .placeholder-slate-400::placeholder { color: #64748B !important; }
+html.dark input,
+html.dark textarea,
+html.dark select {
+  color-scheme: dark;
+}
+
+/* Glassmorphism panels adapted for dark surfaces */
+html.dark .glass-panel {
+  background: rgba(22, 31, 50, 0.85);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+html.dark .glass-dropdown {
+  background: rgba(22, 31, 50, 0.97);
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.35), 0 8px 10px -6px rgba(0, 0, 0, 0.2);
+}
+
+/* Skeleton shimmer + scrollbar tuned for dark backgrounds */
+html.dark .skeleton {
+  background: linear-gradient(90deg, #1E293B 25%, #2A3A52 50%, #1E293B 75%);
+  background-size: 200% 100%;
+}
+html.dark ::-webkit-scrollbar-thumb { background: #334155; }
+@media (hover: hover) { html.dark ::-webkit-scrollbar-thumb:hover { background: #475569; } }
+
+/* ---- Opacity-variant utilities (Tailwind generates a distinct class for
+   each color/opacity pair, e.g. bg-white/90, border-slate-200/80, so these
+   need their own selectors — a plain `.bg-white` rule never matches them) ---- */
+html.dark .bg-white\/10 { background-color: rgba(22, 31, 50, 0.10) !important; }
+html.dark .bg-white\/15 { background-color: rgba(22, 31, 50, 0.15) !important; }
+html.dark .bg-white\/20 { background-color: rgba(22, 31, 50, 0.20) !important; }
+html.dark .bg-white\/80 { background-color: rgba(22, 31, 50, 0.80) !important; }
+html.dark .bg-white\/90 { background-color: rgba(22, 31, 50, 0.90) !important; }
+html.dark .bg-white\/95 { background-color: rgba(22, 31, 50, 0.95) !important; }
+
+html.dark .bg-slate-50\/50 { background-color: rgba(15, 23, 42, 0.5) !important; }
+html.dark .bg-slate-50\/60 { background-color: rgba(15, 23, 42, 0.6) !important; }
+html.dark .bg-slate-50\/80 { background-color: rgba(15, 23, 42, 0.8) !important; }
+html.dark .bg-slate-100\/60 { background-color: rgba(30, 41, 59, 0.6) !important; }
+html.dark .bg-slate-200\/70 { background-color: rgba(41, 53, 73, 0.7) !important; }
+
+html.dark .bg-indigo-50\/30,
+html.dark .bg-indigo-50\/40,
+html.dark .bg-indigo-50\/50,
+html.dark .bg-indigo-50\/60,
+html.dark .bg-indigo-50\/70,
+html.dark .bg-indigo-50\/80,
+html.dark .bg-indigo-50\/90 {
+  background-color: rgba(99, 102, 241, 0.14) !important;
+}
+html.dark .bg-indigo-100\/50,
+html.dark .bg-indigo-100\/70 {
+  background-color: rgba(99, 102, 241, 0.22) !important;
+}
+
+html.dark .border-slate-200\/60,
+html.dark .border-slate-200\/70,
+html.dark .border-slate-200\/80 {
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+html.dark .border-slate-100\/80 { border-color: rgba(255, 255, 255, 0.06) !important; }
+html.dark .border-white\/10,
+html.dark .border-white\/20 {
+  border-color: rgba(255, 255, 255, 0.15) !important;
+}
+html.dark .border-indigo-200\/60,
+html.dark .border-indigo-200\/70,
+html.dark .border-indigo-200\/80,
+html.dark .border-indigo-200\/90 {
+  border-color: rgba(129, 140, 248, 0.35) !important;
+}
+
+/* ---- Gradient stops (bg-gradient-to-* cards). Overriding the custom
+   properties Tailwind's gradient utilities set is enough — the class's own
+   rule references these variables, so redefining them here re-colors the
+   whole gradient without touching the gradient class itself. ---- */
+html.dark .from-indigo-50,
+html.dark .from-indigo-50\/50,
+html.dark .from-indigo-50\/70,
+html.dark .from-indigo-50\/90 {
+  --tw-gradient-from: #1B2340 var(--tw-gradient-from-position) !important;
+  --tw-gradient-to: rgb(27 35 64 / 0) var(--tw-gradient-to-position) !important;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-via, var(--tw-gradient-to)) !important;
+}
+html.dark .via-white {
+  --tw-gradient-via: #161F32 var(--tw-gradient-via-position) !important;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-via), var(--tw-gradient-to) !important;
+}
+html.dark .to-white {
+  --tw-gradient-to: #161F32 var(--tw-gradient-to-position) !important;
+}
+
+/* ---- Focus/focus-within state overrides for inputs that flip to white on focus ---- */
+html.dark .focus-within\:bg-white:focus-within,
+html.dark .focus\:bg-white:focus {
+  background-color: #161F32 !important;
+}
+html.dark .focus-within\:text-slate-900:focus-within {
+  color: #F1F5F9 !important;
+}
+
+/* Custom Sleek Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}
+
+/* Glassmorphism Classes */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+.glass-dropdown {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  box-shadow: 0 20px 25px -5px rgba(15, 23, 42, 0.08), 0 8px 10px -6px rgba(15, 23, 42, 0.04);
+}
+
+/* Card Subtle Elevation & Hover Lift */
+.card-hover {
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+@media (hover: hover) { .card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px -6px rgba(15, 23, 42, 0.08), 0 4px 10px -2px rgba(15, 23, 42, 0.03);
+} }
+
+/* Button Micro-Interactions */
+.btn-press {
+  transition: transform 0.1s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+.btn-press:active {
+  transform: scale(0.97);
+}
+
+/* Shimmer Loading Skeleton */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+.skeleton {
+  background: linear-gradient(90deg, #F1F5F9 25%, #E2E8F0 50%, #F1F5F9 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* Animated Route Line on SVG Map */
+@keyframes dash {
+  to {
+    stroke-dashoffset: -40;
+  }
+}
+.map-route-line {
+  stroke-dasharray: 8 6;
+  animation: dash 1.5s linear infinite;
+}
+
+/* Pulse Beacon */
+@keyframes beaconPulse {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 14px rgba(99, 102, 241, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(99, 102, 241, 0);
+  }
+}
+.beacon {
+  animation: beaconPulse 2s infinite;
+}
+
+/* AI Typing Indicator Dots */
+@keyframes typingBounce {
+  0%, 80%, 100% {
+    transform: scale(0.6);
+    opacity: 0.4;
+  }
+  40% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+.typing-dot:nth-child(1) {
+  animation: typingBounce 1.4s infinite ease-in-out 0s;
+}
+.typing-dot:nth-child(2) {
+  animation: typingBounce 1.4s infinite ease-in-out 0.2s;
+}
+.typing-dot:nth-child(3) {
+  animation: typingBounce 1.4s infinite ease-in-out 0.4s;
+}
+
+/* Match Reveal Circle Meter */
+.match-circle {
+  transition: stroke-dashoffset 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Smooth Fade In */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-fade-in {
+  animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Hide scrollbar utility */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+
+/* ==========================================================================
+   Dashboard-style shell (dark sidebar, light lavender canvas, compact cards)
+   ========================================================================== */
+body { background-color: #F6F6FB; }
+.up-page { background: #F6F6FB; }
+html.dark body, html.dark .up-page, html.dark .bg-\[\#F6F6FB\] { background-color: #0B1120 !important; }
+html .rounded-\[20px\] { border-radius: 14px; }
+html .rounded-\[24px\] { border-radius: 16px; }
+
+/* Sidebar */
+.up-sidebar { position: sticky; top: 0; height: 100vh; width: 236px; flex-shrink: 0; background: #1F1F23; color: #B4B4BE; display: flex; flex-direction: column; justify-content: space-between; padding: 18px 12px 14px; z-index: 30; user-select: none; transition: width .2s ease; }
+.up-sidebar.collapsed { width: 68px; }
+.up-sidebar.collapsed .up-label { display: none; }
+.up-sidebar.collapsed .up-nav { justify-content: center; }
+.up-brand { display: flex; align-items: center; padding: 2px 8px 14px; color: #fff; font-weight: 700; font-size: 15px; letter-spacing: -.01em; }
+.up-logo { width: 26px; height: 26px; border-radius: 9999px; background: #fff; color: #6656E8; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.up-collapse { position: absolute; top: 22px; right: -10px; width: 20px; height: 20px; border-radius: 9999px; background: #fff; color: #1F1F23; border: 1px solid #E4E4EC; display: flex; align-items: center; justify-content: center; }
+.up-section { padding: 16px 10px 6px; font-size: 10px; letter-spacing: .06em; text-transform: uppercase; color: #6E6E79; font-weight: 600; }
+.up-nav { width: 100%; display: flex; align-items: center; gap: 10px; padding: 8px 10px; margin-bottom: 2px; border-radius: 8px; font-size: 12.5px; font-weight: 500; color: #B4B4BE; transition: background .15s, color .15s; }
+@media (hover: hover) { .up-nav:hover { background: rgba(255,255,255,.06); color: #fff; } }
+.up-nav.is-active { background: #2E2E35; color: #fff; }
+.up-nav.is-active svg { color: #A79CFF; }
+.up-badge { font-size: 9.5px; font-weight: 700; padding: 1px 6px; border-radius: 9999px; background: rgba(255,255,255,.1); color: #D4D4DC; }
+.up-badge.ok { background: rgba(52,211,153,.16); color: #6EE7B7; }
+.up-foot { display: flex; flex-direction: column; gap: 8px; }
+.up-mode { display: flex; align-items: center; justify-content: space-between; padding: 8px 10px; border-radius: 8px; background: rgba(255,255,255,.05); font-size: 11.5px; color: #D4D4DC; }
+.up-mode button { font-size: 11px; font-weight: 700; color: #A79CFF; }
+.up-user { display: flex; align-items: center; gap: 10px; padding: 6px 8px; border-radius: 8px; cursor: pointer; }
+@media (hover: hover) { .up-user:hover { background: rgba(255,255,255,.06); } }
+.up-sidebar.collapsed .up-user { justify-content: center; }
+
+/* Header */
+.up-header { position: sticky; top: 0; z-index: 20; padding: 18px 28px 12px; display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; background: rgba(246,246,251,.92); backdrop-filter: blur(10px); }
+html.dark .up-header { background: rgba(11,17,32,.92); }
+.up-search { display: flex; align-items: center; gap: 8px; width: 220px; padding: 7px 10px 7px 12px; border-radius: 9999px; background: #fff; color: #94A3B8; font-size: 12px; font-weight: 500; }
+.up-search kbd { font-size: 10px; font-weight: 600; padding: 1px 6px; border-radius: 6px; background: #F1F1F7; color: #7C7C88; }
+.up-circle-btn { position: relative; width: 32px; height: 32px; border-radius: 9999px; display: flex; align-items: center; justify-content: center; background: #fff; color: #64748B; }
+@media (hover: hover) { .up-circle-btn:hover { color: #0F172A; } }
+html.dark .up-search, html.dark .up-circle-btn { background: #161F32; color: #9CA8BC; }
+html.dark .up-search kbd { background: #22304A; color: #9CA8BC; }
+
+/* Cards, tiles, pills */
+.up-card { background: #fff; border-radius: 12px; box-shadow: 0 1px 2px rgba(20,20,40,.04); }
+html.dark .up-card { background: #161F32; }
+.up-h { font-size: 15px; font-weight: 700; letter-spacing: -.01em; color: #0F172A; }
+html.dark .up-h { color: #F1F5F9; }
+.up-tile { text-align: left; padding: 14px 14px 12px; border-radius: 12px; background: #fff; color: #0F172A; display: flex; flex-direction: column; gap: 14px; transition: box-shadow .2s, transform .1s; box-shadow: 0 1px 2px rgba(20,20,40,.04); }
+@media (hover: hover) { .up-tile:hover { box-shadow: 0 6px 16px -6px rgba(102,86,232,.28); } }
+.up-tile:active { transform: scale(.98); }
+.up-tile .t { font-size: 12px; font-weight: 700; }
+.up-tile .s { font-size: 10.5px; opacity: .6; margin-top: 1px; }
+.up-tile.is-primary { background: linear-gradient(135deg, #7A6CF2, #6656E8); color: #fff; }
+html.dark .up-tile { background: #161F32; color: #F1F5F9; }
+html.dark .up-tile.is-primary { background: linear-gradient(135deg, #7A6CF2, #6656E8); color: #fff; }
+.up-pill { font-size: 10px; font-weight: 600; padding: 4px 10px; border-radius: 6px; background: #E8E8F1; color: #8A8A9A; }
+.up-pill.on { background: #6656E8; color: #fff; }
+html.dark .up-pill { background: #22304A; color: #9CA8BC; }
+html.dark .up-pill.on { background: #6656E8; color: #fff; }
+.up-tag { font-size: 9.5px; font-weight: 600; padding: 3px 8px; border-radius: 6px; }
+.up-bar-track { background: rgba(102,86,232,.10); }
+.up-bar-fill { background: linear-gradient(#9A8DF7, #6656E8); }
+.up-th { font-weight: 500; color: #94A3B8; text-align: left; padding: 6px 10px; }
+.up-td { padding: 9px 10px; color: #1E293B; white-space: nowrap; }
+html.dark .up-td { color: #E2E8F0; }
+
+
+/* ==========================================================================
+   Glass dark theme (deep violet canvas, translucent panels) + slide-down motion
+   ========================================================================== */
+@keyframes upSlideDown { from { opacity: 0; transform: translateY(-14px) scale(.97); } to { opacity: 1; transform: none; } }
+.up-slide-down { transform-origin: top right; animation: upSlideDown .3s cubic-bezier(.16,1,.3,1) both; }
+@media (prefers-reduced-motion: reduce) { .up-slide-down { animation: none; } .up-collapsible, .up-chev { transition: none !important; } }
+
+.up-collapsible { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .32s cubic-bezier(.16,1,.3,1); }
+.up-collapsible.open { grid-template-rows: 1fr; }
+.up-collapsible > div { overflow: hidden; min-height: 0; }
+.up-chev { transition: transform .28s ease; }
+.up-group-btn.open .up-chev { transform: rotate(180deg); }
+.up-group-btn.open, .up-group-btn.has-active { background: #2E2E35; color: #fff; font-weight: 700; }
+.up-tree { margin: 2px 0 4px 18px; border-left: 1px solid rgba(255,255,255,.22); padding: 2px 0; }
+.up-sub { position: relative; display: flex; align-items: center; justify-content: space-between; width: 100%; text-align: left; padding: 7px 10px 7px 18px; margin: 1px 0; border-radius: 8px; font-size: 12px; color: #B4B4BE; transition: background .15s, color .15s; }
+.up-sub::before { content: ""; position: absolute; left: 0; top: 50%; width: 10px; border-top: 1px solid rgba(255,255,255,.22); }
+@media (hover: hover) { .up-sub:hover { color: #fff; background: rgba(255,255,255,.06); } }
+.up-sub.is-active { background: #2E2E35; color: #fff; font-weight: 700; }
+.up-cta { width: 100%; padding: 10px; border: 1px dashed rgba(255,255,255,.28); border-radius: 10px; font-size: 11.5px; font-weight: 600; color: #D4D4DC; transition: background .15s; }
+@media (hover: hover) { .up-cta:hover { background: rgba(255,255,255,.06); } }
+.up-badge { border-radius: 6px; background: #8B5CF6; color: #fff; }
+.up-badge.ok { background: #3B82F6; color: #fff; }
+.up-logo { border-radius: 8px; width: 30px; height: 30px; color: #1F1F23; }
+.up-glass { background: #fff; }
+
+.up-menu-item { display: block; width: 100%; text-align: left; padding: 8px 20px; font-size: 12px; color: #334155; transition: background .15s; }
+@media (hover: hover) { .up-menu-item:hover { background: #F1F5F9; } }
+.up-menu-sep { height: 1px; margin: 6px 16px; background: rgba(148,163,184,.3); }
+
+html.dark .up-page { background: radial-gradient(1000px 560px at 26% 6%, rgba(112,76,232,.42), transparent 62%), radial-gradient(900px 520px at 96% 96%, rgba(72,42,160,.34), transparent 60%), radial-gradient(700px 420px at 4% 92%, rgba(120,50,190,.28), transparent 60%), #0A0818 !important; background-attachment: fixed !important; }
+html.dark body { background-color: #0A0818 !important; }
+html.dark .up-sidebar { background: linear-gradient(180deg, rgba(104,72,206,.46), rgba(56,34,128,.5) 60%, rgba(78,34,140,.56)), rgba(14,10,32,.7); backdrop-filter: blur(22px); -webkit-backdrop-filter: blur(22px); border-right: 1px solid rgba(255,255,255,.16); }
+html.dark .up-nav.is-active, html.dark .up-group-btn.open, html.dark .up-group-btn.has-active, html.dark .up-sub.is-active { background: rgba(10,8,28,.55); }
+@media (hover: hover) { html.dark .up-nav:hover, html.dark .up-sub:hover { background: rgba(255,255,255,.08); } }
+html.dark .up-header { background: rgba(20,14,44,.5); border-bottom: 1px solid rgba(255,255,255,.16); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
+html.dark .up-card, html.dark .up-tile { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.08); box-shadow: none; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+html.dark .up-tile.is-primary { background: linear-gradient(135deg, #7A6CF2, #6656E8); border-color: transparent; }
+html.dark .up-glass { background: rgba(255,255,255,.08); }
+html.dark .up-search, html.dark .up-circle-btn { background: rgba(255,255,255,.08); color: #CBD5E1; }
+@media (hover: hover) { html.dark .up-circle-btn:hover { background: rgba(255,255,255,.14); color: #fff; } }
+html.dark .bg-white { background-color: #1A1438 !important; }
+html.dark .bg-slate-50 { background-color: rgba(255,255,255,.05) !important; }
+html.dark .bg-slate-100 { background-color: rgba(255,255,255,.08) !important; }
+html.dark .bg-slate-200 { background-color: rgba(255,255,255,.12) !important; }
+html.dark .glass-dropdown { background: rgba(64,52,112,.9); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-color: rgba(255,255,255,.14); }
+html.dark .up-menu-item { color: #E2E8F0; }
+@media (hover: hover) { html.dark .up-menu-item:hover { background: rgba(255,255,255,.1); color: #fff; } }
+html.dark .bg-amber-50\/80 { background-color: rgba(245,158,11,.12) !important; }
+html.dark .text-amber-900, html.dark .text-amber-800 { color: #FCD34D !important; }
+
+@keyframes upSlideUp { from { opacity: 0; transform: translateY(14px) scale(.97); } to { opacity: 1; transform: none; } }
+.up-slide-up { transform-origin: bottom left; animation: upSlideUp .3s cubic-bezier(.16,1,.3,1) both; }
+@media (prefers-reduced-motion: reduce) { .up-slide-up { animation: none; } }
+
+.up-tag.ok { background: #E3F8EE; color: #0E9F6E; }
+.up-tag.info { background: #EAE7FE; color: #6656E8; }
+.up-tag.warn { background: #FFF3DA; color: #B7791F; }
+.up-tag.bad { background: #FFE9EC; color: #E5484D; }
+html.dark .up-tag.ok { background: rgba(52,211,153,.16); color: #6EE7B7; }
+html.dark .up-tag.info { background: rgba(139,124,255,.22); color: #C4BBFF; }
+html.dark .up-tag.warn { background: rgba(245,158,11,.16); color: #FCD34D; }
+html.dark .up-tag.bad { background: rgba(244,63,94,.16); color: #FDA4AF; }
+.up-menu-item:focus-visible, .up-user:focus-visible, .up-nav:focus-visible, .up-sub:focus-visible, .up-circle-btn:focus-visible { outline: 2px solid #8E80F4; outline-offset: -2px; }
+
+/* ---- Mobile refinements ---- */
+.up-mobile-nav { padding-bottom: calc(.5rem + env(safe-area-inset-bottom, 0px)); }
+@media (max-width: 767px) {
+  .up-header { padding: 14px 16px 10px; gap: 10px; }
+  .up-header h1 { font-size: 18px; line-height: 24px; }
+  .up-search { width: auto; padding: 7px 9px; }
+}
+@media (max-width: 639px) {
+  #notifications-dropdown { position: fixed; left: 12px; right: 12px; top: 64px; width: auto; }
+}
+
+
+/* ---- Phone fixes ---- */
+.up-content { padding-bottom: var(--up-nav-h, 80px); }
+.up-view-h { height: calc(100vh - var(--up-header-h, 65px)); height: calc(100dvh - var(--up-header-h, 65px)); }
+@media (max-width: 767px) {
+  .up-view-h { height: calc(100vh - var(--up-header-h, 65px) - var(--up-nav-h, 72px)); height: calc(100dvh - var(--up-header-h, 65px) - var(--up-nav-h, 72px)); }
+  /* 16px inputs stop iOS Safari zooming the page on focus */
+  input:not([type=checkbox]):not([type=radio]):not([type=range]):not([type=file]), select, textarea { font-size: 16px !important; }
+  .mobile-nav-btn { min-width: 44px; min-height: 44px; justify-content: center; }
+}
+@media (min-width: 768px) {
+  .up-content { padding-bottom: 0; }
+  .up-map-svg { min-height: 480px; }
+}
+html { -webkit-text-size-adjust: 100%; -webkit-tap-highlight-color: transparent; }

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#F6F6FB" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0E0A20" media="(prefers-color-scheme: dark)">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="UniPulse">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <title>UniPulse</title>
+
+  <!-- Early theme application (runs before first paint to avoid a light/dark flash) -->
+  <script>
+    (function() {
+      try {
+        var stored = localStorage.getItem("unipulse-theme") || "dark";
+        var prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+        var isDark = stored === "dark" || (stored === "system" && prefersDark);
+        if (isDark) document.documentElement.classList.add("dark");
+      } catch (e) { /* ignore, defaults to light */ }
+    })();
+  </script>
+
+  <!-- Favicon SVG -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234F46E5' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polygon points='12,4 18.93,8 18.93,16 12,20 5.07,16 5.07,8'/><polyline points='7,12 9,12 10.5,8.5 13,15.5 14.5,12 17,12'/></svg>">
+
+  <!-- Fonts and Tailwind are bundled locally, so the app works offline -->
+  <link rel="stylesheet" href="css/fonts.css?v=13">
+
+  <link rel="stylesheet" href="css/tailwind.css?v=13">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/custom.css?v=13">
+</head>
+<body class="h-full bg-[#F6F6FB] text-slate-900 antialiased selection:bg-indigo-100 selection:text-indigo-900">
+  
+  <!-- Root SPA Mounting Point -->
+  <div id="app-root" class="min-h-full"></div>
+
+  <!-- Main Application Script (Standalone Bundle with Zero Dependencies) -->
+  <script src="js/bundle.js?v=13"></script>
+  <script>
+    if ("serviceWorker" in navigator && location.protocol.indexOf("http") === 0) {
+      window.addEventListener("load", function () { navigator.serviceWorker.register("sw.js").catch(function () {}); });
+    }
+  </script>
+</body>
+</html>
